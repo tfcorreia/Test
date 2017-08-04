@@ -8,7 +8,7 @@
 %% To view a copy of this license, 
 %% visit http://creativecommons.org/licenses/by-nc/4.0/.
 %%
-%% Version 2017/07/10 [4.1.1]
+%% Version 2017/07/26 [4.1.2]
 %% Departamento de Informática
 %% Faculdade de Ciências e Tecnologia
 %% Universidade Nova de Lisboa
@@ -38,7 +38,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{novathesis}[2017/07/19 novathesis template]
+\ProvidesClass{novathesis}[2017/07/26 novathesis template]
 
 
 
@@ -203,13 +203,9 @@
         {\usebox{\novathesis@coverbox}}%
     }%
   }%
-
-  \vspace*{50pt}
-  \hspace*{20pt}
-  \includegraphics[width=\mpwidth]{embraer.pdf}
   ~% This space is important here so that the cover page is not empty anymore!
-  \cleardoublepage%  
-    
+  \cleardoublepage%
+  
   %% Print second conver page if school is ul/fc
   \@printcommitteeauxtrue
   \setcounter{@novathesis@cnt}{0}%	reset counter used in the name listing
@@ -282,28 +278,6 @@
       {}%
 	}%
   {}%
-}
-
-\newcommand{\novathesis@motivationfile}{@empty}
-\newcommand{\motivationfile}[1]{%
-\renewcommand{\novathesis@motivationfile}{#1}%
-}
-
-\newcommand{\printmotivation}{%
-\IfFileExists{Chapters/\novathesis@motivationfile}{%
-\ifthenelse{%
-\equal{\novathesis@opt@docdegree}{bsc}	% bsc
-\OR%
-\equal{\novathesis@opt@docdegree}{msc}	% msc
-\OR%
-\equal{\novathesis@opt@docdegree}{phd}	% phd
-}{% THEN
-\input{Chapters/\novathesis@motivationfile}%
-\cleardoublepage%
-}{% ELSE
-}%
-}%
-{}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -427,8 +401,11 @@
 
 %% Work identification
 \newcommand{\thetitle}{~title \novathesis@undefined}
-\renewcommand{\title}[1]{%
-  \renewcommand{\thetitle}{#1\hypersetup{pdftitle={#1}}}%
+\renewcommand{\title}[2][]{%
+  \ifthenelse{\equal{#1}{}}%
+    {\newcommand{\covertitle}{#2}}%
+    {\newcommand{\covertitle}{#1}}%
+  \renewcommand{\thetitle}{#2\hypersetup{pdftitle={#2}}}%
 }
 
 \newcommand{\thesubtitle}{~subtitle \novathesis@undefined}
@@ -558,6 +535,7 @@
       \@nameuse{the#1adviserstrfont}[\novathesis@opt@coverlang]%
       \@nameuse{the#1adviserstr}%
               [\novathesis@tmp@total,\novathesis@tmp@gender,\novathesis@opt@coverlang]:%
+%              [\novathesis@tmp@total][\novathesis@tmp@gender][\novathesis@opt@coverlang]\\
     }
     \forlistcsloop{\printadvisers@ii}{novathesis@#1adviser@list}%
   \fi%
