@@ -7,19 +7,24 @@
 
 % Univesity
 \university[pt]={Universidade NOVA de Lisboa}
-\university[en]={NOVA University of Lisbon}
-\university[fr]={Universidade NOVA de Lisboa}
-\university[it]={Universidade NOVA de Lisboa}
+\university[en]={NOVA University Lisbon}
+\university[fr]={NOVA University Lisbon}
+\university[it]={NOVA University Lisbon}
 
 % Faculty / School
 \faculty[pt]={Faculdade de Ciências e Tecnologia}
 \faculty[en]={Faculty of Sciences and Technology}
-\faculty[fr]={Faculdade de Ciências e Tecnologia}
-\faculty[it]={Faculdade de Ciências e Tecnologia}
+\faculty[fr]={Faculty of Sciences and Technology}
+\faculty[it]={Faculty of Sciences and Technology}
 
 % Scientific filed
-\majorfield[pt]={Engenharia Informática}
-\majorfield[en]={Computer Science and Engineering}
+\IfSubStr{\novathesis@opt@docdegree}{phd}{%
+    \majorfield[pt]={Informática}
+    \majorfield[en]={Computer Science and Informatics}
+  }{%
+  \majorfield[pt]={Engenharia Informática}
+  \majorfield[en]={Computer Science and Informatics Engineering}
+  }
 \majorfield[fr]={Ingénierie Informatique}
 \majorfield[it]={Ingegneria Informatica}
 
@@ -34,13 +39,20 @@
 \thesiscover[mscplan,front]={cover-msc-std}
 \thesiscover[bsc,front]={cover-bsc-std}
 \thesiscover[plain,front]={cover-plain-std}
-%\thesiscover[phd,cd]={cover-phd-std-square}
-%\thesiscover[phdplan,cd]={cover-phd-std-square}
-%\thesiscover[phdprop,cd]={cover-phd-std-square}
-%\thesiscover[msc,cd]={cover-msc-std-square}
-%\thesiscover[mscplan,cd]={cover-msc-std-square}
-%\thesiscover[bsc,cd]={cover-bsc-std-square}
-%\thesiscover[plain,cd]={cover-plain-std-square}
+\thesiscover[phd,cdfront]={cd-cover-phd}
+\thesiscover[phd,cdinlay]={cd-inlay-phd}
+\thesiscover[phdplan,cdfront]={cd-cover-phd}
+\thesiscover[phdplan,cdinlay]={cd-inlay-phd}
+\thesiscover[phdprop,cdfront]={cd-cover-phd}
+\thesiscover[phdprop,cdinlay]={cd-inlay-phd}
+\thesiscover[msc,cdfront]={cd-cover-msc}
+\thesiscover[msc,cdinlay]={cd-inlay-msc}
+\thesiscover[mscplan,cdfront]={cd-cover-msc}
+\thesiscover[mscplan,cdinlay]={cd-inlay-msc}
+\thesiscover[bsc,cdfront]={cd-cover-msc}
+\thesiscover[bsc,cdinlay]={cd-inlay-msc}
+\thesiscover[plain,cdfront]={cd-cover-msc}
+\thesiscover[plain,cdinlay]={cd-inlay-msc}
 
 % Spine info
 \spine[logo]={logoNOVA}
@@ -127,7 +139,7 @@
 % % Title of Dissertation
 \coveritem[c]{4.5cm}{%
   \fontfamily{phv}\fontsize{16}{16}\selectfont
-  \textbf{\thetitle}
+  \textbf{\covertitle}
 }
 
 % Degree
